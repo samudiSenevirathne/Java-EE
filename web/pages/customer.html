@@ -121,13 +121,15 @@
             url:"customer",
             // dataType:"json",/*extra point (hariyata json walin ma gannawanam only mehema danne)*/
             success: function (resp) {
-                console.log(resp);
+                console.log(resp.data);
                 for(let customer of resp){
                     let row =`<tr><td>${customer.id}</td><td>${customer.name}</td><td>${customer.address}</td><td>${customer.salary}</td></tr>`;
                     $("#tblCustomer").append(row);
                 }
                 bindTrEvents();
-            },error:function (error){
+            }
+            ,error:function (error){
+                alert(error.responseJSON.message);
                 console.log(error);
             }
         });
@@ -145,51 +147,71 @@
                         clearInputFields();
                        console.log(resp);
                       getAllCustomers();
-               },
-               error: function (error) {
-                   alert(error.responseJSON.message);
-                   clearInputFields();
                }
+               // ,
+               // error: function (error) {
+               //     alert(error.responseJSON.message);
+               //     clearInputFields();
+               // }
            });
         });
 
 
     $('#btnCusDelete').click(function () {
-        let formData=$('#customerform').serialize();
+        // let formData=$('#customerform').serialize();
+        let id=$("#txtCustomerID").val();
         $.ajax({
-            url:"customer",
+            url:"customer?id="+id,
             method: "delete",
-            data:formData,
+            // data:id,
             success: function (resp) {
                 alert(resp.message);
                 clearInputFields();
                 console.log(resp);
                 getAllCustomers();
-            },
-            error: function (error) {
-                alert(error.responseJSON.message);
-                clearInputFields();
             }
+            // ,
+            // error: function (error) {
+            //     alert(error.responseJSON.message);
+            //     clearInputFields();
+            // }
         });
     });
 
 
     $('#btnUpdate').click(function () {
-        let formData=$('#customerform').serialize();
+        // let formData=$('#customerform').serialize();
+            let id=$("#txtCustomerID").val();
+            let name=$("#txtCustomerName").val();
+            let address=$("#txtCustomerAddress").val();
+            let salary=$("#txtCustomerSalary").val();
+
+        customerAll={
+            "id":id,
+            "name":name,
+            "address":address,
+            "salary":salary
+        }
+
+        //Json.stringify(customerAll)/*meka dunna ma ape eka string karanawa*/
+
+
         $.ajax({
             url:"customer",
             method: "put",
-            data:formData,
+            contentType:"application/json",
+            data:JSON.stringify(customerAll),
             success: function (resp) {
                 alert(resp.message);
                 clearInputFields();
                 console.log(resp);
                 getAllCustomers();
-            },
-            error: function (error) {
-                alert(error.responseJSON.message);
-                clearInputFields();
             }
+            // ,
+            // error: function (error) {
+            //     alert(error.responseJSON.message);
+            //     clearInputFields();
+            // }
         });
     });
 
