@@ -30,7 +30,7 @@
     <ul class="list-group list-group-horizontal text-danger justify-content-end font-weight-bold">
         <li class="list-group-item bg-danger text-white" id="lnkHome"><a class="text-white" href="404.jsp">Home</a></li>
         <li class="list-group-item bg-white" id="lnkCustomer"><a href="http://localhost:8080/jsonWithAjax/pages/customer.html">Customer</a></li>
-        <li class="list-group-item bg-white" id="lnkItem"><a href="http://localhost:8080/jsonWithAjax/pages/item">Item</a></li>
+        <li class="list-group-item bg-white" id="lnkItem"><a href="http://localhost:8080/jsonWithAjax/pages/item.html">Item</a></li>
         <li class="list-group-item bg-white" id="lnkOrders"><a href="pages/purchase-order.jsp">Orders</a></li>
     </ul>
 </header>
