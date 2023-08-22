@@ -121,8 +121,8 @@
             url:"customer",
             // dataType:"json",/*extra point (hariyata json walin ma gannawanam only mehema danne)*/
             success: function (resp) {
-                console.log(resp.data);
-                for(let customer of resp){
+                console.log(resp.message);
+                for(let customer of resp.data){
                     let row =`<tr><td>${customer.id}</td><td>${customer.name}</td><td>${customer.address}</td><td>${customer.salary}</td></tr>`;
                     $("#tblCustomer").append(row);
                 }
@@ -148,11 +148,11 @@
                        console.log(resp);
                       getAllCustomers();
                }
-               // ,
-               // error: function (error) {
-               //     alert(error.responseJSON.message);
-               //     clearInputFields();
-               // }
+               ,
+               error: function (error) {
+                   alert(error.responseJSON.message);
+                   clearInputFields();
+               }
            });
         });
 
@@ -170,11 +170,11 @@
                 console.log(resp);
                 getAllCustomers();
             }
-            // ,
-            // error: function (error) {
-            //     alert(error.responseJSON.message);
-            //     clearInputFields();
-            // }
+            ,
+            error: function (error) {
+                alert(error.responseJSON.message);
+                clearInputFields();
+            }
         });
     });
 
@@ -207,11 +207,11 @@
                 console.log(resp);
                 getAllCustomers();
             }
-            // ,
-            // error: function (error) {
-            //     alert(error.responseJSON.message);
-            //     clearInputFields();
-            // }
+            ,
+            error: function (error) {
+                alert(error.responseJSON.message);
+                clearInputFields();
+            }
         });
     });
 

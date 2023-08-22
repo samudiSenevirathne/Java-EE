@@ -50,23 +50,23 @@ public class CustomerServlet extends HttpServlet {
                 customerObject.add("salary", salary);
                 allCustomers.add(customerObject.build());
             }
-               resp.getWriter().print(allCustomers.build());
+//               resp.getWriter().print(allCustomers.build());
 
-//            JsonObjectBuilder response = Json.createObjectBuilder();//create object
-//            response.add("state", "OK");
-//            response.add("message", "Successfully Loaded....!");
-//            response.add("data", allCustomers);
-//            resp.getWriter().print(response.build());
+            JsonObjectBuilder response = Json.createObjectBuilder();//create object
+            response.add("state", "OK");
+            response.add("message", "Successfully Loaded....!");
+            response.add("data", allCustomers.build());
+            resp.getWriter().print(response.build());
 
 
         } catch (ClassNotFoundException | SQLException e) {
 //            throw new RuntimeException(e);
-//            JsonObjectBuilder response = Json.createObjectBuilder();//create object
-//            response.add("state", "Error");
-//            response.add("message", e.getMessage());
-//            response.add("data", "");
-//            resp.setStatus(400);
-//            resp.getWriter().print(response.build());
+            JsonObjectBuilder response = Json.createObjectBuilder();//create object
+            response.add("state", "Error");
+            response.add("message", e.getMessage());
+            response.add("data", "");
+            resp.setStatus(400);
+            resp.getWriter().print(response.build());
         }
 
     }
@@ -107,7 +107,7 @@ public class CustomerServlet extends HttpServlet {
                 pstm.setObject(2, cusName);
                 pstm.setObject(3, cusAddress);
                 pstm.setObject(4, cusSalary);
-                resp.addHeader("Content-Type", "application/json");/*!!!*/
+                resp.addHeader("Content-Type", "application/json");/*if you want to alert in json you have to use it again(my point) !!!*/
             resp.addHeader("Access-Control-Allow-Origin","*");
 //            resp.addHeader("Access-Control-Allow-Origin","*");
 
@@ -121,15 +121,14 @@ public class CustomerServlet extends HttpServlet {
 //            }
 
             } catch(ClassNotFoundException | SQLException e){
-//                JsonObjectBuilder response = Json.createObjectBuilder();//create object
-//                response.add("state", "Error");
-//                response.add("message", e.getMessage());
-//                response.add("data", "");
-//                resp.setStatus(400);
-//                resp.getWriter().print(response.build());
+                JsonObjectBuilder response = Json.createObjectBuilder();//create object
+                response.add("state", "Error");
+                response.add("message", e.getMessage());
+                response.add("data", "");
+                resp.setStatus(400);
+                resp.getWriter().print(response.build());
             }
         }
-
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {  //QueryString Support,Formdata NotSupport,Json Support
@@ -178,7 +177,7 @@ public class CustomerServlet extends HttpServlet {
                     pstm3.setObject(1, cusName);
                     pstm3.setObject(2, cusAddress);
                     pstm3.setObject(3, cusSalary);
-                    resp.addHeader("Content-Type","application/json");/*!!!*/
+                    resp.addHeader("Content-Type","application/json");/*if you want to alert in json you have to use it again(my point) !!!*/
             resp.addHeader("Access-Control-Allow-Origin","*");
             resp.addHeader("Access-Control-Allow-Headers","content-type");
 
@@ -192,13 +191,13 @@ public class CustomerServlet extends HttpServlet {
                     }
 
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-//                        JsonObjectBuilder response = Json.createObjectBuilder();//create object
-//                        response.add("state", "Error");
-//                        response.add("message", e.getMessage());
-//                        response.add("data", "");
-//                        resp.setStatus(400);
-//                        resp.getWriter().print(response.build());
+//            e.printStackTrace();
+                        JsonObjectBuilder response = Json.createObjectBuilder();//create object
+                        response.add("state", "Error");
+                        response.add("message", e.getMessage());
+                        response.add("data", "");
+                        resp.setStatus(400);
+                        resp.getWriter().print(response.build());
 
         }
     }
@@ -219,7 +218,7 @@ public class CustomerServlet extends HttpServlet {
 
             PreparedStatement pstm2 = connection.prepareStatement("delete from Customer where id=?");
                     pstm2.setObject(1, id);
-                    resp.addHeader("Content-Type","application/json");/*!!!*/
+                    resp.addHeader("Content-Type","application/json");/*if you want to alert in json you have to use it again(my point) !!!*/
                     resp.addHeader("Access-Control-Allow-Origin","*");
 
 
@@ -233,12 +232,12 @@ public class CustomerServlet extends HttpServlet {
 
         } catch (ClassNotFoundException | SQLException e) {
 //            e.printStackTrace();
-//            JsonObjectBuilder response = Json.createObjectBuilder();//create object
-//            response.add("state", "Error");
-//            response.add("message", e.getMessage());
-//            response.add("data", "");
-//            resp.setStatus(400);
-//            resp.getWriter().print(response.build());
+            JsonObjectBuilder response = Json.createObjectBuilder();//create object
+            response.add("state", "Error");
+            response.add("message", e.getMessage());
+            response.add("data", "");
+            resp.setStatus(400);
+            resp.getWriter().print(response.build());
         }
     }
 
@@ -251,7 +250,7 @@ public class CustomerServlet extends HttpServlet {
 }
 
 
-/*monoLithic architecher :- application compontance serama eka unit ekak widiyata thiye nam monoLithic architecher wee. */
-/*can't edit /maintain karanna amurui/'*/
-/*RESOURES oRIENTED aRCHITECHERS:- pradan washayen kotas 02kata bediya haka ekama layer eka kotas kihipayakata bedila thiye nam RESOURES ORIENTED ARCHITECHERS wee */
-/*MEKATH EXPLAIN KARANA LAYAER EKA (MICRO aRCHITECHRE)*/
+/*monolithic architecture :- application components serama eka unit ekak widiyata thiye nam monolithic architecture wee. */
+/*monolithic architecture's  disadvantages:- can't edit /maintain karanna amurui/'*/
+/*RESOURCES ORIENTED ARCHITECTURE:- pradan washayen kotas 02kata bediya haka ekama layer eka kotas kihipayakata bedila thiye nam RESOURCES ORIENTED ARCHITECTURE wee */
+/*MEKATH EXPAND KARANA LAYAER EKA (MICRO ARCHITECTURE)*/
